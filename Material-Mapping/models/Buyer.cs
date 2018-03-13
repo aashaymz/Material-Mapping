@@ -9,8 +9,7 @@ namespace Material_Mapping.models
     public class Buyer
     {
 
-        public Buyer(String Name, int MaterialAmount, Double Price)
-        {
+        public Buyer(String Name, int MaterialAmount, Double Price) {
             this.Name = Name;
             this.MaterialAmount = MaterialAmount;
             this.Price = Price;

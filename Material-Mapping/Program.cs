@@ -11,9 +11,22 @@ namespace Material_Mapping
     {
         static void Main(string[] args)
         {
-            InitializeBuyers initializeBuyers = new InitializeBuyers();
-            List<Buyer> buyers = initializeBuyers.Initialize();
-
+            Buyers buyer = new Buyers();
+            List<Buyer> buyers = buyer.InitializeBuyers();
+            int materialUnits;
+            Console.WriteLine("Please enter units of material you want to sell : ");
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out materialUnits))
+                {
+                    Console.WriteLine("Please enter valid units of material : ");
+                }
+                else
+                {
+                    break;
+                }
+            }
+            buyer.ComputeBuyers(buyers, materialUnits);
             Console.ReadKey();
         }
     }

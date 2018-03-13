@@ -14,8 +14,6 @@ namespace Material_Mapping
             InitializeBuyers initializeBuyers = new InitializeBuyers();
             List<Buyer> buyers = initializeBuyers.Initialize();
 
-            Console.Write("HI");
-
             Console.ReadKey();
         }
     }

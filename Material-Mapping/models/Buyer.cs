@@ -8,23 +8,22 @@ namespace Material_Mapping.models
 {
     public class Buyer
     {
-        private Double pricePerUnit;
 
-        public String Name { get; set; }
+        public Buyer(String Name, int MaterialAmount, Double Price)
+        {
+            this.Name = Name;
+            this.MaterialAmount = MaterialAmount;
+            this.Price = Price;
+            this.PricePerUnit = (Double)Price / MaterialAmount;
 
-        public Double MaterialAmount { get; set; }
-
-        public Double Price { get; set; }
-
-        public Double PricePerUnit {
-            get
-            {
-                return pricePerUnit;
-            }
-            set
-            {
-                pricePerUnit = Price / (Double)Price;
-            }
         }
+
+        public String Name { get; private set; }
+
+        public int MaterialAmount { get; private set; }
+
+        public Double Price { get; private set; }
+
+        public Double PricePerUnit { get; private set; }
     }
 }

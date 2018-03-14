@@ -36,6 +36,7 @@ namespace Material_Mapping
         {
             Console.WriteLine("\n\n" + System.Configuration.ConfigurationManager.AppSettings["tableHeader1"] 
                 + "\t" + System.Configuration.ConfigurationManager.AppSettings["tableHeader2"]);
+            Double totalProfit = new Double();
             foreach (Buyer buyer in buyers)
             {
                 if (materialUnits > 0)
@@ -43,6 +44,7 @@ namespace Material_Mapping
                     if (materialUnits - buyer.MaterialAmount >= 0)
                     {
                         Console.WriteLine(buyer.Name + "\t" + buyer.MaterialAmount);
+                        totalProfit = totalProfit + buyer.Price;
                     }
                     else
                     {
@@ -55,6 +57,7 @@ namespace Material_Mapping
                     break;
                 }
             }
+            Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["totalProMsg"] + totalProfit);
             if (materialUnits > 0)
             {
                 Console.WriteLine("\n" + System.Configuration.ConfigurationManager.AppSettings["matRemainMsg"] + materialUnits);

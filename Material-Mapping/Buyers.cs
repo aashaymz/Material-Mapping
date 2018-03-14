@@ -13,10 +13,10 @@ namespace Material_Mapping
         public List<Buyer> InitializeBuyers()
         {
             List<Buyer> buyers = new List<Buyer>();
-            string[] lines = System.IO.File.ReadAllLines(@"data\file.csv");
+            string[] lines = System.IO.File.ReadAllLines(@System.Configuration.ConfigurationManager.AppSettings["buyersFilePath"]);
             foreach (string line in lines)
             {
-                var values = line.Split(';');
+                var values = line.Split(char.Parse(System.Configuration.ConfigurationManager.AppSettings["csvFileSeprator"]));
 
                 Buyer newBuyer = new Buyer(values[0], int.Parse(values[1]), Double.Parse(values[2]));
                 buyers.Add(newBuyer);
@@ -27,7 +27,8 @@ namespace Material_Mapping
 
         public void ComputeBuyers(List<Buyer> buyers, int materialUnits)
         {
-            Console.WriteLine("\n\nComany\tAmount");
+            Console.WriteLine("\n\n" + System.Configuration.ConfigurationManager.AppSettings["tableHeader1"] 
+                + "\t" + System.Configuration.ConfigurationManager.AppSettings["tableHeader2"]);
             foreach (Buyer buyer in buyers)
             {
                 if (materialUnits > 0)

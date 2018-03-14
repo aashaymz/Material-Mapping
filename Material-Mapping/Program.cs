@@ -14,12 +14,12 @@ namespace Material_Mapping
             Buyers buyer = new Buyers();
             List<Buyer> buyers = buyer.InitializeBuyers();
             int materialUnits;
-            Console.WriteLine("Please enter units of material you want to sell : ");
+            Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["unitsMaterialMsg"]);
             while (true)
             {
                 if (!int.TryParse(Console.ReadLine(), out materialUnits))
                 {
-                    Console.WriteLine("Please enter valid units of material : ");
+                    Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["repeatUnitsMaterialMsg"]);
                 }
                 else
                 {

@@ -13,18 +13,25 @@ namespace Material_Mapping
         {
             Buyers buyer = new Buyers();
             List<Buyer> buyers = buyer.InitializeBuyers();
-            uint materialUnits;
+            int materialUnits;
             Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["unitsMaterialMsg"]);
             while (true)
             {
-                if (!uint.TryParse(Console.ReadLine(), out materialUnits))
+                if (!int.TryParse(Console.ReadLine(), out materialUnits))
                 {
                     Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["repeatUnitsMaterialMsg"]);
+                    continue;
                 }
-                else
+
+                if (materialUnits > 0)
                 {
                     break;
                 }
+                else
+                {
+                    Console.WriteLine(System.Configuration.ConfigurationManager.AppSettings["repeatUnitsMaterialMsg"]);
+                }
+
             }
             buyer.ComputeBuyers(buyers, materialUnits);
             Console.ReadKey();

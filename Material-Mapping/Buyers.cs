@@ -17,14 +17,14 @@ namespace Material_Mapping
             foreach (string line in lines)
             {
                 var values = line.Split(char.Parse(System.Configuration.ConfigurationManager.AppSettings["csvFileSeprator"]));
-                if (uint.Parse(values[1]) > 0 && Double.Parse(values[2]) > 0)
+                if (int.Parse(values[1]) > 0 && Double.Parse(values[2]) > 0)
                 {
-                    Buyer newBuyer = new Buyer(values[0], uint.Parse(values[1]), Double.Parse(values[2]));
+                    Buyer newBuyer = new Buyer(values[0], int.Parse(values[1]), Double.Parse(values[2]));
                     buyers.Add(newBuyer);
                 }
                 else
                 {
-                    Console.WriteLine(values[0] + System.Configuration.ConfigurationManager.AppSettings["skipMsg"]);
+                    Console.WriteLine(values[0] + " " + System.Configuration.ConfigurationManager.AppSettings["skipMsg"] + "\n");
                 }
                 
             }
@@ -32,7 +32,7 @@ namespace Material_Mapping
             return sorterBuyers;
         }
 
-        public void ComputeBuyers(List<Buyer> buyers, uint materialUnits)
+        public void ComputeBuyers(List<Buyer> buyers, int materialUnits)
         {
             Console.WriteLine("\n\n" + System.Configuration.ConfigurationManager.AppSettings["tableHeader1"] 
                 + "\t" + System.Configuration.ConfigurationManager.AppSettings["tableHeader2"]);

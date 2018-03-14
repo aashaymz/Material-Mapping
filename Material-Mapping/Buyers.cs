@@ -17,15 +17,22 @@ namespace Material_Mapping
             foreach (string line in lines)
             {
                 var values = line.Split(char.Parse(System.Configuration.ConfigurationManager.AppSettings["csvFileSeprator"]));
-
-                Buyer newBuyer = new Buyer(values[0], int.Parse(values[1]), Double.Parse(values[2]));
-                buyers.Add(newBuyer);
+                if (uint.Parse(values[1]) > 0 && Double.Parse(values[2]) > 0)
+                {
+                    Buyer newBuyer = new Buyer(values[0], uint.Parse(values[1]), Double.Parse(values[2]));
+                    buyers.Add(newBuyer);
+                }
+                else
+                {
+                    Console.WriteLine(values[0] + System.Configuration.ConfigurationManager.AppSettings["skipMsg"]);
+                }
+                
             }
             List<Buyer> sorterBuyers = buyers.OrderByDescending(o => o.PricePerUnit).ToList();
             return sorterBuyers;
         }
 
-        public void ComputeBuyers(List<Buyer> buyers, int materialUnits)
+        public void ComputeBuyers(List<Buyer> buyers, uint materialUnits)
         {
             Console.WriteLine("\n\n" + System.Configuration.ConfigurationManager.AppSettings["tableHeader1"] 
                 + "\t" + System.Configuration.ConfigurationManager.AppSettings["tableHeader2"]);
@@ -41,8 +48,16 @@ namespace Material_Mapping
                     {
                         Console.WriteLine(buyer.Name + "\t" + materialUnits);
                     }
-                        materialUnits = materialUnits - buyer.MaterialAmount;
+                    materialUnits = materialUnits - buyer.MaterialAmount;
                 }
+                else
+                {
+                    break;
+                }
+            }
+            if (materialUnits > 0)
+            {
+                Console.WriteLine("\n" + System.Configuration.ConfigurationManager.AppSettings["matRemainMsg"] + materialUnits);
             }
         }
     }

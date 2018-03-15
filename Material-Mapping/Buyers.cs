@@ -28,8 +28,8 @@ namespace Material_Mapping
                 }
                 
             }
-            List<Buyer> sorterBuyers = buyers.OrderByDescending(o => o.PricePerUnit).ToList();
-            return sorterBuyers;
+            List<Buyer> sortedBuyers = buyers.OrderByDescending(o => o.PricePerUnit).ToList();
+            return sortedBuyers;
         }
 
         public void ComputeBuyers(List<Buyer> buyers, int materialUnits)
